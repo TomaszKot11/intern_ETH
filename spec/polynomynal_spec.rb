@@ -13,6 +13,7 @@ RSpec.describe 'Polynomynal' do
 
     context '#add_polynomynal' do
         let(:polynomynal) { Polynomynal.new([1, 2, 5, 6]) }
+        
         context 'not Polynomynal instance input provided' do 
             it 'should raise error with proper message' do 
                 expect { polynomynal.add_polynomynal('Not polynomynal object') }.to raise_error(an_instance_of(ArgumentError).and having_attributes(message: 'The input should be a polynomynal'))
@@ -20,21 +21,29 @@ RSpec.describe 'Polynomynal' do
         end
 
         context 'polynomynals with smaller degree provided' do
+            subject { polynomynal.add_polynomynal(polynomynal_smaller_degree).coefficient_arr }
             context 'positive coefficients' do 
                 let(:polynomynal_smaller_degree) { Polynomynal.new([1, 2, 3]) }
+                let(:result) { [1, 3, 7, 9] }
 
                 it 'should return proper polynomynal' do 
-                    # expect()
+                    expect(subject).to match_array(result)
                 end
             end
 
             context 'negative coefficients' do 
+                let(:polynomynal_smaller_degree) { Polynomynal.new([-1, -2, -3]) }
+                let(:result) { [1, 1, 3, 3] }
 
+                it 'should return proper polynomynal' do 
+                    expect(subject).to match_array(result)
+                end
             end
         end
 
         context 'polynomynals with greater degree provided' do 
-            context 'positivve coefficients' do 
+
+            context 'positive coefficients' do 
 
             end
 
@@ -44,10 +53,13 @@ RSpec.describe 'Polynomynal' do
         end
 
         context 'polynomynals with the same degree provided' do
+
             context 'positive coefficients' do 
+
             end
 
-            context 'negative coefficients' do 
+            context 'negative coefficients' do
+
             end
         end
     end
