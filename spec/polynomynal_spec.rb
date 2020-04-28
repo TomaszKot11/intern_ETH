@@ -13,7 +13,7 @@ RSpec.describe 'Polynomynal' do
 
     context '#add_polynomynal' do
         let(:polynomynal) { Polynomynal.new([1, 2, 5, 6]) }
-        
+
         context 'not Polynomynal instance input provided' do 
             it 'should raise error with proper message' do 
                 expect { polynomynal.add_polynomynal('Not polynomynal object') }.to raise_error(an_instance_of(ArgumentError).and having_attributes(message: 'The input should be a polynomynal'))
@@ -42,24 +42,40 @@ RSpec.describe 'Polynomynal' do
         end
 
         context 'polynomynals with greater degree provided' do 
-
+            subject { polynomynal.add_polynomynal(polynomynal_greater_degree).coefficient_arr }
             context 'positive coefficients' do 
+                let(:polynomynal_greater_degree) { Polynomynal.new([1, 3, 4, 5, 7, 1]) }
 
+                it 'should return proper polynomynal' do 
+                    expect(subject).to match_array([1, 3, 5, 7, 12, 7])
+                end
             end
 
             context 'negative coefficients' do 
-            
+                let(:polynomynal_greater_degree) { Polynomynal.new([-1, -3, -4, -5, -7, -1]) }
+
+                it 'should return proper polynomynal' do 
+                    expect(subject).to match_array([-1, -3, -3, -3, -2, 5])
+                end
             end
         end
 
         context 'polynomynals with the same degree provided' do
-
+            subject { polynomynal.add_polynomynal(polynomynal_same_degree).coefficient_arr }
             context 'positive coefficients' do 
+                let(:polynomynal_same_degree) { Polynomynal.new([3, 4, 5, 1]) }
 
+                it 'should return proper polynomynal' do
+                    expect(subject).to match_array([4, 6, 10, 7])
+                end
             end
 
             context 'negative coefficients' do
+                let(:polynomynal_same_degree) { Polynomynal.new([-3, -4, -5, -1]) }
 
+                it 'should return proper polynomynal' do 
+                    expect(subject).to match_array([-2, -2, 0, 5])
+                end
             end
         end
     end

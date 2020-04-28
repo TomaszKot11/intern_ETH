@@ -15,7 +15,7 @@ class Polynomynal
         poly2_arr_size = polynomynal.coefficient_arr.size
         smaller_arr = poly1_arr_size <= poly2_arr_size ? @coefficient_arr : polynomynal.coefficient_arr # reference types
         # make two arrays equal (loop) - push to the head of an array 0
-        (poly1_arr_size - poly2_arr_size).times { smaller_arr.unshift(0) } 
+        (poly1_arr_size - poly2_arr_size).abs.times { smaller_arr.unshift(0) } 
         # element wise addition (hint: the last line of Ruby's function is returned)
         Polynomynal.new([@coefficient_arr, polynomynal.coefficient_arr].transpose.map { |x| x.reduce(:+) })
     end
