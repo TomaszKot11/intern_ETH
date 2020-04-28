@@ -18,3 +18,9 @@ The project was written in Ruby programming language. Normally I use MacOS but t
 
 --------
 <strong><i>To get a brief overview of the project functionality please run main.rb file.</i></strong>
+
+<h1>Screenshots from project execution</h1>
+<h2>Main.rb</h2>
+<img src="https://github.com/TomaszKot11/intern_ETH/blob/master/screens/result.JPG"/>
+<h2>Rspec (tests)</h2>
+<img src="https://github.com/TomaszKot11/intern_ETH/blob/master/screens/tests.JPG"/>
