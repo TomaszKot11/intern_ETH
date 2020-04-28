@@ -78,6 +78,37 @@ RSpec.describe 'Polynomynal' do
                 end
             end
         end
+
+        context 'order of polynomynal addition should not change the result' do 
+            let(:polynomynal_1) { Polynomynal.new([1, 5, 1, 5]) }
+            let(:polynomynal_2) { Polynomynal.new([3, 5, 6, 7]) }
+            let(:result) { [4, 10, 7, 12] }
+
+
+            context 'polynomynal_1 + polynomynal_2' do
+                it 'should return proper presult' do 
+                    expect(polynomynal_1.add_polynomynal(polynomynal_2).coefficient_arr).to match_array(result)
+                end
+            end
+
+            context 'polynomynal_2 + polynomynal_1' do 
+                it 'should return proper result' do 
+                    expect(polynomynal_2.add_polynomynal(polynomynal_1).coefficient_arr).to match_array(result)
+                end
+            end
+        end
+    end
+
+    # since add_polynomynal is well tested I make some assumption
+    # not to test so much this factory method
+    context 'self.create_polynomynal' do 
+        let(:coefficient_arr_1) { [2, 6, 7, 8] }
+        let(:coefficient_arr_2) { [2, 5, 1, 5, 7] }
+        subject { Polynomynal.create_polynomynal(coefficient_arr_1, coefficient_arr_2) }
+
+        it 'should create proper polynomynal by two coefficients array addition' do 
+            expect(subject.coefficient_arr).to match_array([2, 7, 7, 12, 15])
+        end
     end
 
     context '#to_s' do 
