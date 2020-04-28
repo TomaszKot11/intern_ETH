@@ -119,4 +119,5 @@ RSpec.describe 'Polynomynal' do
             expect(polynomynal.to_s).to eq(polynomynal_string)
         end
     end
+    # We do not test private methods - we test them by publi methods and their effects
 end
